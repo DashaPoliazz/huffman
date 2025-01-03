@@ -1,0 +1,36 @@
+# Build files
+/build/
+*.o
+*.obj
+*.so
+*.dll
+*.dylib
+*.a
+*.lib
+*.exe
+
+# Test binaries
+/tests/*.out
+/tests/*.exe
+
+# IDE and editor files
+*.swp
+*.swo
+*.user
+.idea/
+.vscode/
+*.log
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+build_and_test.sh
+
+# Clang formatting
+.clang-format
+
+# Backup files
+*.bak
+*~
