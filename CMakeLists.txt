@@ -17,17 +17,26 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-# Add the main executable (if you have one)
+# Add the main executable (optional if you have an application)
 add_executable(HuffmanMain src/main.cpp)
 target_include_directories(HuffmanMain PUBLIC include)
 
-# Add test files
-file(GLOB TEST_SOURCES "tests/*.cpp")
-add_executable(HuffmanTests ${TEST_SOURCES})
+# ✅ Enable recursive search for test files
+file(GLOB_RECURSE TEST_SOURCES "tests/unit/*.cpp")
+
+# ✅ Check if test files were found
+if(TEST_SOURCES)
+    # ✅ Create test executable with all discovered test files
+    add_executable(HuffmanTests ${TEST_SOURCES})
+else()
+    message(FATAL_ERROR "No test files found in tests/unit!")
+endif()
+
+# ✅ Set include directories and link Google Test
 target_include_directories(HuffmanTests PUBLIC include)
 target_link_libraries(HuffmanTests gtest gtest_main pthread)
 
-# Enable testing
+# ✅ Enable testing and register all tests automatically
 enable_testing()
-add_test(NAME HuffmanTests COMMAND HuffmanTests)
+add_test(NAME HuffmanTests COMMAND ${CMAKE_BINARY_DIR}/HuffmanTests)
 

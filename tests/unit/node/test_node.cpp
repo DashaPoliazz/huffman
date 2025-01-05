@@ -1,6 +1,5 @@
-#include "../include/BinaryTree.h"
+#include "../../../include/BinaryTree.h"
 #include <gtest/gtest.h>
-#include <iostream>
 
 // Test for creating a node
 TEST(NodeTest, TestForCreatingNode) {

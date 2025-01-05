@@ -15,12 +15,12 @@ public:
         : value(std::forward<U>(value)) {
     }
 
+    /* setters */
     template <typename U>
     void set_value(U&& new_value) {
         value = std::forward<U>(new_value);
     }
 
-    /* setters */
     template <typename U>
     void set_left(U&& new_left) {
         left = std::make_unique<Node<T>>(std::forward<U>(new_left));
@@ -36,15 +36,6 @@ public:
     }
     Node<T>* get_right() const {
         return right.get();
-    }
-};
-
-template <typename T>
-class BinaryTree {
-public:
-    BinaryTree() {
-    }
-    ~BinaryTree() {
     }
 };
 
