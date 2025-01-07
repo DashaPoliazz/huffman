@@ -4,11 +4,11 @@
 #include <unordered_map>
 
 // Test for basic frequency table creation
-TEST(HuffmanTest, FrequencyTableBasicTest) {
+TEST(FrequencyTableTest, BasicFrequencyTest) {
     Huffman huffman("hello");
     auto frequency_table = huffman.get_frequency_table();
 
-    // Checking if frequencies are correctly counted
+    // Check if frequencies are correctly counted
     EXPECT_EQ(frequency_table['h'], 1);
     EXPECT_EQ(frequency_table['e'], 1);
     EXPECT_EQ(frequency_table['l'], 2);
@@ -16,7 +16,7 @@ TEST(HuffmanTest, FrequencyTableBasicTest) {
 }
 
 // Test for an empty string input
-TEST(HuffmanTest, FrequencyTableEmptyString) {
+TEST(FrequencyTableTest, EmptyStringTest) {
     Huffman huffman("");
     auto frequency_table = huffman.get_frequency_table();
 
@@ -25,7 +25,7 @@ TEST(HuffmanTest, FrequencyTableEmptyString) {
 }
 
 // Test for a string with repeating characters
-TEST(HuffmanTest, FrequencyTableRepeatingCharacters) {
+TEST(FrequencyTableTest, RepeatingCharactersTest) {
     Huffman huffman("aaa");
     auto frequency_table = huffman.get_frequency_table();
 
@@ -35,7 +35,7 @@ TEST(HuffmanTest, FrequencyTableRepeatingCharacters) {
 }
 
 // Test for a string containing spaces and special characters
-TEST(HuffmanTest, FrequencyTableSpecialCharacters) {
+TEST(FrequencyTableTest, SpecialCharactersTest) {
     Huffman huffman("a b c a");
     auto frequency_table = huffman.get_frequency_table();
 
@@ -47,7 +47,7 @@ TEST(HuffmanTest, FrequencyTableSpecialCharacters) {
 }
 
 // Test for a string with all unique characters
-TEST(HuffmanTest, FrequencyTableDifferentCharacters) {
+TEST(FrequencyTableTest, UniqueCharactersTest) {
     Huffman huffman("abc123");
     auto frequency_table = huffman.get_frequency_table();
 
