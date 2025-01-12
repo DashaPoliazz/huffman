@@ -34,13 +34,34 @@ public:
 
         std::string code_buffer;
         build_encoding_table(huffman_tree.get(), code_buffer);
+        for (const auto& [symbol, code] : direct_encoding_table) {
+            reversed_encoding_table[code] = symbol;
+        }
     }
 
-    std::string encode(std::string& text) const override {
-        return text;
+    std::string encode(std::string& text) override {
+        std::string decoded;
+        for (char ch : text) {
+            std::string str_to_decode = std::string(1, ch);
+            decoded += direct_encoding_table[str_to_decode];
+        }
+        return decoded;
     }
-    std::string decode(std::string& text) const override {
-        return text;
+
+    std::string decode(std::string& text) override {
+        std::string decoded;
+        std::string encoding;
+
+        for (char bit : text) {
+            encoding += bit;
+
+            if (reversed_encoding_table.count(encoding)) {
+                decoded += reversed_encoding_table[encoding];
+                encoding.clear();
+            }
+        }
+
+        return decoded;
     }
 
     /* getters for testing purposes */
@@ -51,12 +72,13 @@ public:
         return create_node_min_pq();
     }
     EncodingTable get_encoding_table() const {
-        return encoding_table;
+        return direct_encoding_table;
     }
 
     /* Inner machinery */
 private:
-    EncodingTable encoding_table;
+    EncodingTable direct_encoding_table;
+    EncodingTable reversed_encoding_table;
 
     void build_encoding_table(const Node<NodeValue>* node, std::string& code) {
         if (!node) {
@@ -67,7 +89,7 @@ private:
 
         if (is_leaf) {
             auto element_to_encode = node->value.str;
-            encoding_table[element_to_encode] = code;
+            direct_encoding_table[element_to_encode] = code;
             return;
         }
 

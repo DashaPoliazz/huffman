@@ -12,8 +12,8 @@ public:
     }
 
     /* pure virtual functions */
-    virtual std::string encode(std::string& text) const = 0;
-    virtual std::string decode(std::string& text) const = 0;
+    virtual std::string encode(std::string& text) = 0;
+    virtual std::string decode(std::string& text) = 0;
 
     virtual ~Decoder() = default;
 
